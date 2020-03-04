@@ -2,9 +2,11 @@ package model;
 
 public class User {
 
-	public String nickname;
-	public String password;
-	public String email;
+	private String nickname;
+	private String password;
+	private String email;
+    private CreditCard[] creditCars;
+	
 	
 	public User() {
 		// TODO Auto-generated constructor stub
