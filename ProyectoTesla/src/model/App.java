@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class App {
 
@@ -68,18 +69,15 @@ public class App {
 
 
 
-
 	public CreditCard getActualCreditCard() {
 		return actualCreditCard;
 	}
 
 
 
-
 	public void setActualCreditCard(CreditCard actualCreditCard) {
 		this.actualCreditCard = actualCreditCard;
 	}
-
 
 
 
@@ -208,10 +206,13 @@ public class App {
 			actualUser.getCreditCars()[index]=null;
 		}
 	
-	public boolean buyActualCar(){
-		boolean r = false;
-		return r;
-	}
+	public void buyActualCar(int index){
+		selectCreditCard(index);
+		Date b = new Date();
+		@SuppressWarnings("deprecation")
+		ShopHistory a = new ShopHistory(actualCreditCard, actualTesla,b.getDay()+"/"+b.getMonth()+"/"+b.getYear());
+		actualUser.getHistory().add(a);
+		}
 	
 	
 	
