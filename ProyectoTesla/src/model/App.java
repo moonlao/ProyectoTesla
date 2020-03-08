@@ -10,6 +10,7 @@ public class App {
 	private User actualUser;
 	private TeslaCar actualTesla;
 	private OtherCar actualOtherCar;
+	private CreditCard actualCreditCard;
 
 	
 	
@@ -18,7 +19,69 @@ public class App {
 		teslaCars = new ArrayList<TeslaCar>();
 		otherCars = new ArrayList<OtherCar>();
 		actualUser = null;
+        actualTesla = null;
+        actualOtherCar =null;
+		actualCreditCard =null;
 	}
+	
+	
+	
+
+	public User getActualUser() {
+		return actualUser;
+	}
+
+
+
+
+	public void setActualUser(User actualUser) {
+		this.actualUser = actualUser;
+	}
+
+
+
+
+	public TeslaCar getActualTesla() {
+		return actualTesla;
+	}
+
+
+
+
+	public void setActualTesla(TeslaCar actualTesla) {
+		this.actualTesla = actualTesla;
+	}
+
+
+
+
+	public OtherCar getActualOtherCar() {
+		return actualOtherCar;
+	}
+
+
+
+
+	public void setActualOtherCar(OtherCar actualOtherCar) {
+		this.actualOtherCar = actualOtherCar;
+	}
+
+
+
+
+	public CreditCard getActualCreditCard() {
+		return actualCreditCard;
+	}
+
+
+
+
+	public void setActualCreditCard(CreditCard actualCreditCard) {
+		this.actualCreditCard = actualCreditCard;
+	}
+
+
+
 
 	public ArrayList<User> getUsers() {
 		return users;
@@ -47,17 +110,15 @@ public class App {
 	//Precondici�n, Parametros no nulos
 	public String logIn(String username, String password){
 		String r = null;
-		int count=users.size();
 		for (int i = 0; i < users.size(); i++) {
-			count=count-1;
 			if(username.equals(users.get(i).getNickname())) {
 				if(password.equals(users.get(i).getPassword())) {
 					r="Bienvenido";
                     actualUser =users.get(i);
                     break;
 				}
-			}else if(count<=0) {
-				r="El usuario no existe";
+			}else if(actualUser==null) {
+				r="El usuario no existe o contrasena es incorrect";
 			}
 		}
 		return r;
@@ -122,17 +183,24 @@ public class App {
 			
 		}
 		if(r==null) {
-			r="No puedes guardar m�s de 3 tarjetas";
+			r="No puedes guardar mas de 3 tarjetas";
 		}
 		
 		
 		return r;
 	}
 	
+	//Precondicion, usuario Logeado
+	public void signOut() {
+		actualUser=null;
+	}
+	
+	
 	//Precondici�n, Parametros no nulos
 	public void selectCreditCard(int index) {
-		String r = null;
-
+		if(actualUser.getCreditCars()[index]!=null) {
+			actualCreditCard = actualUser.getCreditCars()[index];
+		}
 	}
 	
 	//Precondici�n, Parametros no nulos
